@@ -12,13 +12,20 @@ class HashTable {
 
   constructor(numBuckets = 4) {
     // Your code here
+    this.count = 0;
+    this.capacity = numBuckets;
+    this.data = new Array(numBuckets).fill(null);
   }
 
   hash(key) {
     // Your code here
+    let firstEight = sha256(key).slice(0, 8);
+
+    return parseInt(firstEight, 16);
   }
 
   hashMod(key) {
+    return this.hash(key) % this.capacity;
     // Your code here
   }
 
@@ -35,6 +42,5 @@ class HashTable {
   }
 
 }
-
 
 module.exports = HashTable;
